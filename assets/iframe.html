@@ -1,0 +1,142 @@
+<!-- THIS IS MAIN HTML -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/@zendeskgarden/css-bedrock@7.0.21,npm/@zendeskgarden/css-utilities@4.3.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+
+
+  <div class="accordion" id="accordionExample">
+   
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Set Reminders
+        </button>
+      </h2>
+      <div style="color:green;text-align:center" id="rem" class="reminder">
+       <h5>Your reminder is getting set..</h5> 
+      </div>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <div class="input-group mb-3">
+            <span class="input-group-text label" id="inputGroup-sizing-default">Time</span>
+            <input type="time" id="time" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text label" id="inputGroup-sizing-default">Date</span>
+            <input type="date" id="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text label" id="inputGroup-sizing-default" >Message</span>
+            <select class="form-select" aria-label="Sizing example input" id="message" aria-describedby="inputGroup-sizing-default">
+                <option value="option1">Follow up with Guest</option>
+                <option value="option2">Follow up with the Store</option>
+                <option value="option3">Follow up with Supervisor</option>
+                <option value="option4">Follow up with TL</option>
+                <option value="option5">Follow up with JFL</option>
+            </select>
+        </div>
+          <div style="align-items: center;">
+          <button type="button" class="btn btn-lg btn-primary" onclick="renderValue()">Submit</button>
+        </div>
+
+         
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Upcoming Reminders
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+
+          <table class="table table-primary">
+            <thead>
+              <tr>
+                <th scope="col">Ticket ID</th>
+                <th scope="col" style="width: 30%;">Message</th>
+                <th scope="col">Time left</th>
+               
+              </tr>
+            </thead>
+            <tbody id="tbody">
+             
+            </tbody>
+          </table>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="overdueSection" class="divToDisplayNone" style="margin-top: 30px;margin-left:45px;display:none">
+    <h2 class="overdueText">Overdue Reminders</h2>
+    <table class="table" style="width: 90%;">
+      <thead>
+        <tr>
+          <th scope="col">Ticket ID</th>
+          <th scope="col">Done</th>
+        </tr>
+      </thead>
+      <tbody id="appendOverdueSectionData">
+      </tbody>
+    </table>
+  </div>
+
+  <div id="SupervisorSection"  style="margin-top: 30px;margin-left:10px">
+    <h1 class="overdueText" style="margin-left:27%;">All Reminders</h1>
+    <hr>
+    <table class="table" style="width: 90%;">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 25%;">Ticket ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Message</th>
+          <th scope="col" style="width: 33%;">Time Left</th>
+        </tr>
+      </thead>
+      <h6>Reminders Set By Agents -</h6>
+      <tbody id="appendSupervisorSectionData">
+      </tbody>
+    </table>
+  </div>
+  <div id="overdueSectionForSupervisor" style="margin-top: 30px;margin-left:10px">
+    <h2 class="overdueText">Overdue Reminders Of Agents -</h2>
+    <table class="table" style="width: 90%;">
+      <thead>
+        <tr>
+          <th scope="col">Ticket ID</th>
+          <th scope="col">Name</th>
+        </tr>
+      </thead>
+      <tbody id="appendOverdueSupervisorSectionData">
+      </tbody>
+    </table>
+  </div>
+
+
+  
+<div id="preferredTimeSection" style="display: none;">
+
+</div>
+
+
+  
+
+
+
+  <script src="https://static.zdassets.com/zendesk_app_framework_sdk/2.0/zaf_sdk.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+  <script src="main.js"></script>
+</body>
+</html>

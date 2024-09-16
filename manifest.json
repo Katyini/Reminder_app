@@ -1,0 +1,21 @@
+{
+  "name": "Notification-App",
+  "author": {
+    "name": "Atulesh",
+    "email": "atuleshsharma5@gmail.com"
+  },
+  "defaultLocale": "en",
+  "private": true,
+  "location": {
+    "support": {
+      "top_bar": "assets/topbar.html",
+      "ticket_sidebar": {
+        "url": "assets/iframe.html",
+        "flexible": true
+      }
+    }
+  },
+  
+  "version": "1.0.0",
+  "frameworkVersion": "2.0"
+}
