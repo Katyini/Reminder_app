@@ -1,0 +1,47 @@
+.accordion{
+    width: 90%;
+    margin-left:2%;
+}
+
+.zd-topbar {
+    height: 50px; /* Set the desired height */
+    width: 100%; /* Set the desired width, typically 100% to span the entire width of the page */
+}
+
+.label{
+   color: #0d65e7;
+   background-color: #e7f1ff;
+}
+.btn-primary{
+    height:25px;
+    margin-left: 30%;
+    
+}
+.btn-lg{
+    padding-left: 12px ;
+    padding-right: 8px;
+    padding-bottom: 33px;
+    
+}
+.reminder{
+    display: none;
+}
+
+.pointer{
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #54b3d6;
+  
+  margin: 0 -.25rem;
+  padding: 0 .25rem;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+    
+}
+
+.pointer:hover {
+    box-shadow: inset 100px 0 0 0 #54b3d6;
+    color: white;
+  }
+.overdueText{
+    font-family: inherit;
+    font-size: 1rem;
+}
