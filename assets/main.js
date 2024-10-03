@@ -11,11 +11,11 @@ let recordKey;
 // let isSupervisor = false;
 ///FOR DEFAULT BEHAVIOUR OF POPUP WINDOW
 function popUp() {
-  var topBarClientPromise = client
+  let topBarClientPromise = client
     .get("instances")
     .then(function (instancesData) {
-      var instances = instancesData.instances;
-      for (var instanceGuid in instances) {
+      let instances = instancesData.instances;
+      for (let instanceGuid in instances) {
         if (instances[instanceGuid].location === "top_bar") {
           return client.instance(instanceGuid);
         }
@@ -41,11 +41,11 @@ function popUp() {
 
 //   instanceClient.invoke('preloadPane')
 
-var time = document.getElementById("time");
-var date = document.getElementById("date");
-var SupervisorSection = document.getElementById("SupervisorSection");
+let time = document.getElementById("time");
+let date = document.getElementById("date");
+let SupervisorSection = document.getElementById("SupervisorSection");
 
-var TICKETID;
+let TICKETID;
 client
   .get("ticket.id")
   .then((data) => {
@@ -66,9 +66,9 @@ function findValueById(idToFind, customFields) {
   return null;
 }
 
-var message = document.getElementById("message");
+let message = document.getElementById("message");
 async function renderValue() {
-  var rem = document.getElementById("rem");
+  let rem = document.getElementById("rem");
   rem.innerHTML = `<h5>Your reminder is getting set..</h5> `;
   rem.style.display = "block";
 
@@ -96,11 +96,11 @@ async function renderValue() {
     date.value = formattedDate;
   }
 
-  var selectedIndex = message.selectedIndex;
-  var valueofMessage;
+  let selectedIndex = message.selectedIndex;
+  let valueofMessage;
   if (selectedIndex !== -1) {
     // Ensure an option is selected
-    var selectedOption = message.options[selectedIndex];
+    let selectedOption = message.options[selectedIndex];
     valueofMessage = selectedOption.innerHTML;
   }
 
@@ -134,10 +134,10 @@ async function renderValue() {
 
 // }
 let userCustomRoleID;
-var UserId;
-var defaultGroupId;
+let UserId;
+let defaultGroupId;
 async function selfUserID() {
-  var config = {
+  let config = {
     method: "GET",
     url: "https://jubilantfoodworks71341691410187.zendesk.com/api/v2/users/me",
     headers: {
@@ -163,7 +163,7 @@ async function selfUserID() {
       // ) {
       //   isSupervisor = true;
       // }
-      var groupConfig = {
+      let groupConfig = {
         method: "GET",
         url: `https://jubilantfoodworks71341691410187.zendesk.com/api/v2/users/${response.user.id}/group_memberships`,
         headers: {
@@ -184,7 +184,7 @@ async function selfUserID() {
 
 selfUserID();
 
-var tbody = document.getElementById("tbody");
+let tbody = document.getElementById("tbody");
 function timeToSeconds(time) {
   let concatinatingSeconds = `${time}:00`;
   let [hours, minutes, seconds] = concatinatingSeconds.split(":").map(Number);
@@ -242,12 +242,12 @@ function formatTime(seconds) {
 
 function updateTimeAndCount(formattingTime, count) {
   // Parse the time components
-  var timeComponents = formattingTime.split(" ");
+  let timeComponents = formattingTime.split(" ");
 
   // Calculate the total time in seconds
-  var totalSeconds = 0;
-  for (var i = 0; i < timeComponents.length; i++) {
-    var component = timeComponents[i];
+  let totalSeconds = 0;
+  for (let i = 0; i < timeComponents.length; i++) {
+    let component = timeComponents[i];
     if (component.endsWith("h")) {
       totalSeconds += parseInt(component) * 3600;
     } else if (component.endsWith("m")) {
@@ -266,22 +266,22 @@ function updateTimeAndCount(formattingTime, count) {
 
   return count;
 }
-var appendOverdueSectionData = document.getElementById(
+let appendOverdueSectionData = document.getElementById(
   "appendOverdueSectionData"
 );
 async function searchTickets() {
   // USER ID
-  // var UserID = Userid;
+  // let UserID = Userid;
 
   // CALLING SEARCH API FOR GETTING LOGGED IN USER DATA
-  var notificationCount = 0;
+  let notificationCount = 0;
 
   // const params = {
   //   query: `assignee:${UserId}`,
   // };
   console.log(UserId, "userid in searchticket");
 
-  var settings = {
+  let settings = {
     url: `https://jubilantfoodworks71341691410187.zendesk.com/api/v2/custom_objects/${objectId}/records`,
     method: "GET",
     contentType: "application/json",
@@ -289,9 +289,9 @@ async function searchTickets() {
       Authorization: "Basic " + btoa(`${email}/token:${token}`),
     },
   };
-  //var subdomain = "jubilantfoodworks71341691410187";
+  //let subdomain = "jubilantfoodworks71341691410187";
   // const url = `https://${subdomain}.zendesk.com/api/v2/custom_objects/${objectId}/records/search?updated_by_user_id%3A${UserId}`;
-  // var settings = {
+  // let settings = {
   //   url: url,
   //   method: "GET",
   //   contentType: "application/json",
@@ -337,7 +337,7 @@ async function searchTickets() {
             UserId,
             "inside if searchticket"
           );
-          var checkingTime = 0;
+          let checkingTime = 0;
           // let x = findValueById(18987454802449, data.results[i].custom_fields);
           // let y = findValueById(18987446964497, data.results[i].custom_fields);
           let x =
@@ -406,7 +406,7 @@ async function searchTickets() {
               setTimeout(popUp, 4000);
             }
 
-            var checkingNaN = 1;
+            let checkingNaN = 1;
             if (isNaN(differenceSeconds)) {
               checkingNaN = 0;
             }
@@ -506,7 +506,7 @@ function createFields() {
       title: "Age",
     },
   };
-  var subdomain = "jubilantfoodworks71341691410187";
+  let subdomain = "jubilantfoodworks71341691410187";
 
   client
     .request({
@@ -526,15 +526,15 @@ function createFields() {
     });
 }
 
-var preferCount = 0;
-var dataToPassinOverdueFunc;
-var showing24hoursgapReminder = document.getElementById(
+let preferCount = 0;
+let dataToPassinOverdueFunc;
+let showing24hoursgapReminder = document.getElementById(
   "showing24hoursgapReminder"
 );
 // async function showPrefferedTime() {
-//   var preferredTimeSection = document.getElementById("preferredTimeSection");
+//   let preferredTimeSection = document.getElementById("preferredTimeSection");
 //   let UserId;
-//   var config = {
+//   let config = {
 //     method: "GET",
 //     url: "https://jubilantfoodworks71341691410187.zendesk.com/api/v2/users/me",
 //     headers: {
@@ -550,10 +550,10 @@ var showing24hoursgapReminder = document.getElementById(
 //   //   query: `assignee%3A${UserId}`,
 //   // };
 
-//   // var subdomain = "jubilantfoodworks71341691410187";
+//   // let subdomain = "jubilantfoodworks71341691410187";
 //   //const url = `https://${subdomain}.zendesk.com/api/v2/search?query=%20${params.query}`;
 //   const url = `https://jubilantfoodworks71341691410187.zendesk.com/api/v2/custom_objects/reminder_data/records?user_id=${UserId}`;
-//   var settings = {
+//   let settings = {
 //     url: url,
 //     type: "GET",
 //     dataType: "json",
@@ -608,11 +608,11 @@ var showing24hoursgapReminder = document.getElementById(
 //                 //}
 //                 console.log(preferredTimeValue, "preferredTimeValue");
 //                 if (preferredTimeValue != null) {
-//                   var timeSlotVariable = preferredTimeValue;
+//                   let timeSlotletiable = preferredTimeValue;
 
-//                   var timeSlotParts = timeSlotVariable.split("-");
-//                   var startTimeHours = timeSlotParts[0];
-//                   var endTimeHours = timeSlotParts[1];
+//                   let timeSlotParts = timeSlotletiable.split("-");
+//                   let startTimeHours = timeSlotParts[0];
+//                   let endTimeHours = timeSlotParts[1];
 //                   startTimeHours = convertTo24HourFormat(startTimeHours);
 //                   let passstarttime = `${startTimeHours}:00:00`;
 //                   endTimeHours = convertTo24HourFormat(endTimeHours);
@@ -647,7 +647,7 @@ var showing24hoursgapReminder = document.getElementById(
 //                     <td onclick="window.open('${link}', '_blank')" class="pointer">${
 //                       ticketData.ticket[j].id
 //                     }</td>
-//                     <td>${timeSlotVariable}</td>
+//                     <td>${timeSlotletiable}</td>
 
 //                   </tr>
 //                   `;
@@ -663,11 +663,11 @@ var showing24hoursgapReminder = document.getElementById(
 //   });
 // }
 async function showPrefferedTime() {
-  var preferredTimeSection = document.getElementById("preferredTimeSection");
+  let preferredTimeSection = document.getElementById("preferredTimeSection");
 
   // console.log("showPreferred clicked");
   let UserID;
-  var config = {
+  let config = {
     method: "GET",
     url: "/api/v2/users/me",
     headers: {
@@ -683,9 +683,9 @@ async function showPrefferedTime() {
     query: `assignee:${UserID}`,
   };
 
-  var subdomain = "jubilantfoodworks7134";
+  let subdomain = "jubilantfoodworks7134";
   const url = `/api/v2/search?query=${params.query}`;
-  var settings = {
+  let settings = {
     url: url,
     type: "GET",
     dataType: "json",
@@ -744,11 +744,11 @@ async function showPrefferedTime() {
       );
       if (preferredTimeValue != null) {
         console.log(preferredTimeValue, "preferredTimeValue2");
-        var timeSlotVariable = preferredTimeValue;
+        let timeSlotletiable = preferredTimeValue;
 
-        var timeSlotParts = timeSlotVariable.split("-");
-        var startTimeHours = timeSlotParts[0];
-        var endTimeHours = timeSlotParts[1];
+        let timeSlotParts = timeSlotletiable.split("-");
+        let startTimeHours = timeSlotParts[0];
+        let endTimeHours = timeSlotParts[1];
         startTimeHours = convertTo24HourFormat(startTimeHours);
         let passstarttime = `${startTimeHours}:00:00`;
         endTimeHours = convertTo24HourFormat(endTimeHours);
@@ -794,7 +794,7 @@ async function showPrefferedTime() {
                     <td onclick="window.open('${link}', '_blank')" class="pointer">${
             data.results[i].id
           }</td>
-                    <td>${timeSlotVariable}</td>
+                    <td>${timeSlotletiable}</td>
                     
                   </tr>
                   `;
@@ -1019,7 +1019,7 @@ async function setReminder(nowTime, endtime, id, ComingDate, message) {
     }
   }
 
-  //   var payload = {
+  //   let payload = {
   //     ticket: {
   //       custom_fields: [
   //         { id: 18987446964497, value: endtime },
@@ -1051,9 +1051,9 @@ async function setReminder(nowTime, endtime, id, ComingDate, message) {
 
 function delete24HoursReminder() {
   console.log("24 hours reminder func clicked");
-  var TwentyFourHoursReminders =
+  let TwentyFourHoursReminders =
     document.getElementsByClassName("24hoursReminders");
-  var okayButton = document.getElementsByClassName("material-icons");
+  let okayButton = document.getElementsByClassName("material-icons");
   console.log(okayButton, "okayButton24");
   console.log(TwentyFourHoursReminders, "shrish 1");
   console.log(okayButton, "shrish 2");
@@ -1064,16 +1064,16 @@ function delete24HoursReminder() {
         okayButton[i].parentNode.childNodes[2].innerHTML,
         "24 hour function okayButton[i].parentNode.childNodes"
       );
-      var textToTrim = okayButton[i].parentNode.childNodes[2].innerHTML;
+      let textToTrim = okayButton[i].parentNode.childNodes[2].innerHTML;
 
       // console.log(textToTrim,typeof textToTrim,"printing")
-      // var parts = textToTrim.split(':');
-      // var ticketNumber = parts[1].trim();
+      // let parts = textToTrim.split(':');
+      // let ticketNumber = parts[1].trim();
 
-      var data = {
+      let data = {
         tags: ["remind1"],
       };
-      var config = {
+      let config = {
         method: "DELETE",
         url: `https://jubilantfoodworks71341691410187.zendesk.com/api/v2/tickets/${textToTrim}/tags.json`,
         headers: {
@@ -1098,9 +1098,9 @@ function delete24HoursReminder() {
 }
 
 function delete48HoursReminder() {
-  var TwentyFourHoursReminders =
+  let TwentyFourHoursReminders =
     document.getElementsByClassName("48hoursReminders");
-  var okayButton = document.getElementsByClassName("48hours");
+  let okayButton = document.getElementsByClassName("48hours");
   console.log(okayButton, "okayButton48");
   for (let i = 0; i < TwentyFourHoursReminders.length; i++) {
     okayButton[i].addEventListener("click", async () => {
@@ -1108,15 +1108,15 @@ function delete48HoursReminder() {
         okayButton[i].parentNode.childNodes,
         "48 hour function okayButton[i].parentNode.childNodes"
       );
-      var textToTrim = okayButton[i].parentNode.childNodes[2].innerHTML;
+      let textToTrim = okayButton[i].parentNode.childNodes[2].innerHTML;
       // console.log(textToTrim,typeof textToTrim,"printing")
-      // var parts = textToTrim.split(':');
-      // var ticketNumber = parts[1].trim();
+      // let parts = textToTrim.split(':');
+      // let ticketNumber = parts[1].trim();
 
-      var data = {
+      let data = {
         tags: ["remind2"],
       };
-      var config = {
+      let config = {
         method: "DELETE",
         url: `https://jubilantfoodworks71341691410187.zendesk.com/api/v2/tickets/${textToTrim}/tags.json`,
         headers: {
@@ -1145,9 +1145,9 @@ setTimeout(delete24HoursReminder, 2000);
 setTimeout(delete48HoursReminder, 2000);
 
 async function deleteOverdueRecord() {
-  var deleteRecord = document.getElementsByClassName("delete");
+  let deleteRecord = document.getElementsByClassName("delete");
   // console.log(deleteRecord, "deleteOverdueRecord");
-  var del = document.querySelectorAll(".delete");
+  let del = document.querySelectorAll(".delete");
   for (let i = 0; i < deleteRecord.length; i++) {
     deleteRecord[i].addEventListener("click", async () => {
       const table = deleteRecord[i].parentNode.parentNode;
@@ -1163,7 +1163,7 @@ async function deleteOverdueRecord() {
 // setTimeout(deleteOverdueRecord, 2000);
 // async function setTimeLeftFieldData(timeLeft, ticketID) {
 //     setTimeout(async()=>{
-//     var payload = {
+//     let payload = {
 //         ticket: {
 //             custom_fields: [
 //                 { id: 19092257553553, value: timeLeft }
@@ -1253,7 +1253,7 @@ function setReminderToTrue() {
       });
   });
 }
-var divToDisplayNone = document.getElementsByClassName("divToDisplayNone");
+let divToDisplayNone = document.getElementsByClassName("divToDisplayNone");
 let overdueSectionForSupervisor = document.getElementById(
   "overdueSectionForSupervisor"
 );
@@ -1263,17 +1263,17 @@ if (overdueSectionForSupervisor != undefined) {
 function getSupervisorData() {
   console.log(userCustomRoleID, "katiyayini checkkkk");
   console.log("supervisor func running");
-  var roles = [
+  let roles = [
     { 17593367892241: "BE Agent" },
     { 18370219405585: "BE Supervisor - 1" },
     { 18370303987089: "BE Supervisor - 2" },
   ];
 
-  var matchingField = null;
+  let matchingField = null;
 
-  for (var i = 0; i < roles.length; i++) {
-    var roleObject = roles[i];
-    var keys = Object.keys(roleObject);
+  for (let i = 0; i < roles.length; i++) {
+    let roleObject = roles[i];
+    let keys = Object.keys(roleObject);
     // HERE userCustomRoleID we are fetching from the current logged in user
     if (keys.some((key) => Number(key) === userCustomRoleID)) {
       matchingField = roleObject[userCustomRoleID];
@@ -1283,8 +1283,8 @@ function getSupervisorData() {
   console.log(matchingField, "matchingField");
 
   // console.log(defaultGroupId, "defaultGrouPId");
-  var overdueSection = document.getElementById("overdueSection");
-  var accordionExample = document.getElementById("accordionExample");
+  let overdueSection = document.getElementById("overdueSection");
+  let accordionExample = document.getElementById("accordionExample");
   let overdueSectionTopBar = document.getElementsByClassName(
     "overdueSectionTopBar"
   );
@@ -1348,24 +1348,24 @@ setTimeout(getSupervisorData, 2000);
 async function getFieldsOfAllAgents(userID, userCustomRoleID) {
   return new Promise(async (resolve) => {
     console.log("getFieldsOfAllAgents running");
-    var roles = [
+    let roles = [
       { 17593367892241: "BE Agent" },
       { 18370219405585: "BE Supervisor - 1" },
       { 18370303987089: "BE Supervisor - 2" },
     ];
 
-    var matchingField = null;
+    let matchingField = null;
 
-    for (var i = 0; i < roles.length; i++) {
-      var roleObject = roles[i];
-      var keys = Object.keys(roleObject);
+    for (let i = 0; i < roles.length; i++) {
+      let roleObject = roles[i];
+      let keys = Object.keys(roleObject);
 
       if (keys.some((key) => Number(key) === userCustomRoleID)) {
         matchingField = roleObject[userCustomRoleID];
         break;
       }
     }
-    var appendSupervisorSectionData = document.getElementById(
+    let appendSupervisorSectionData = document.getElementById(
       "appendSupervisorSectionData"
     );
     if (matchingField === "BE Agent") {
@@ -1373,7 +1373,7 @@ async function getFieldsOfAllAgents(userID, userCustomRoleID) {
 
       console.log("agent found to display");
       const url = `https://jubilantfoodworks71341691410187.zendesk.com/api/v2/custom_objects/${objectId}/records/search?&query=user_id:${userID}`;
-      var settings = {
+      let settings = {
         url: url,
         type: "GET",
         contentType: "application/json",
@@ -1441,7 +1441,7 @@ async function getFieldsOfAllAgents(userID, userCustomRoleID) {
             data.custom_object_records[i].custom_object_fields;
           // for (let i = 0; i < data.results.length; i++) {
           // let timeLeft = findValueById(19092257553553, data.results[i].custom_fields);
-          var checkingTime = 0;
+          let checkingTime = 0;
           // let x = findValueById(18987454802449, data.results[i].custom_fields);
           // let y = findValueById(18987446964497, data.results[i].custom_fields);
 
@@ -1487,17 +1487,17 @@ async function getFieldsOfAllAgents(userID, userCustomRoleID) {
             if (formatting == 0) {
               checkingTime = 1;
             }
-            var checkingNaN = 1;
+            let checkingNaN = 1;
             if (isNaN(differenceSeconds)) {
               checkingNaN = 0;
             }
 
             if (checkingTime == 0) {
-              var nameToRender;
+              let nameToRender;
 
-              var subdomain = "jubilantfoodworks71341691410187";
+              let subdomain = "jubilantfoodworks71341691410187";
               const url = `https://${subdomain}.zendesk.com/api/v2/users/${data.custom_object_records[i].custom_object_fields.user_id}`;
-              var settings = {
+              let settings = {
                 url: url,
                 type: "GET",
                 dataType: "json",
@@ -1544,9 +1544,9 @@ async function checkSuperVisorTicket() {
     query: `assignee:${UserId}`,
   };
 
-  var subdomain = "jubilantfoodworks71341691410187";
+  let subdomain = "jubilantfoodworks71341691410187";
   const url = `https://${subdomain}.zendesk.com/api/v2/search?query=${params.query}`;
-  var settings = {
+  let settings = {
     url: url,
     type: "GET",
     dataType: "json",
